@@ -33,6 +33,8 @@ defmodule GraphqlDojo.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:absinthe, "~> 1.5"},
+      {:absinthe_phoenix, "~> 2.0"},
       {:phoenix, "~> 1.5.6"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
