@@ -15,7 +15,10 @@ Let's check GitHub's GraphQL API: https://graphql.github.com/
 
 - QL: because it is a query language.
 
-- Mutations: the silent M at the end in order to manipulate data.
+- Mutations: the invisible M at the end in order to manipulate data.
+
+By convention **Queries** are used to fetch data and **mutations** are used to manipulate data.
+This is not enforced, depending on the implementation queries can have side-effects, but they should be avoided.
 
 ## How this project was created
 
