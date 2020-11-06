@@ -74,3 +74,32 @@ defmodule GraphqlDojoWeb.Router do
   end
 end
 ```
+
+### Define some objects with relations
+
+A very simplified example in order to show the basic capabilities of Absinthe.
+
+Person:
+- id: string
+- name: string
+- date_of_birth: datetime
+- address: string
+- friends: list_of(string) (we start with a reference to the ID)
+- pets: list_of(string) (we start with a reference to the ID)
+
+Pet:
+- id: string
+- species: string
+- name: string
+- owner: string (we start with a reference to the ID)
+
+We assume each pet is chipped so they can be identified, and each person has an ID card.
+
+### Play around with resolvers and mutations
+
+1. Write a resolver to fetch a person
+2. Write a resolver to fetch a pet
+3. Rework pets to resolve the whole owner
+4. Rework persons to resolve friends and pets
+5. Add a new pet with owner
+6. Move a pet from one owner to another
