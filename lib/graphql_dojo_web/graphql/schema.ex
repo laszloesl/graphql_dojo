@@ -5,6 +5,13 @@ defmodule GraphqlDojoWeb.GraphQL.Schema do
   import_types(GraphqlDojoWeb.GraphQL.Schema.Person)
 
   query do
-    field(:get_person, :person, resolve: fn _, _ -> {:error, :no_such_person} end)
+    field(:get_person, :person) do
+      arg(:id, non_null(:string))
+
+      resolve(fn %{id: id}, _ ->
+        person = GraphqlDojo.Database.get(id)
+        {:ok, person}
+      end)
+    end
   end
 end
