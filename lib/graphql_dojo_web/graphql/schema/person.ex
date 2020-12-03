@@ -8,12 +8,20 @@ defmodule GraphqlDojoWeb.GraphQL.Schema.Person do
     field :address, :string
 
     field :friends, list_of(non_null(:person)) do
-      resolve(fn %{friends: friends}, _arguments, _resolution_info ->
+      resolve(fn %{friends: friends} = _parent, _arguments, _resolution_info ->
         friends = Enum.map(friends, &GraphqlDojo.Database.get(&1))
         {:ok, friends}
       end)
     end
 
-    field :pets, list_of(non_null(:string))
+    field :pets, list_of(non_null(:pet)) do
+      arg(:species, :string)
+
+      resolve(fn %{pets: pets} = _parent, arguments, _resolution_info ->
+        IO.inspect(arguments, label: "args for pets")
+        pets = Enum.map(pets, &GraphqlDojo.Database.get(&1))
+        {:ok, pets}
+      end)
+    end
   end
 end
